@@ -15,7 +15,7 @@ function AdviceBox() {
     React.useEffect(() => {
         axios.get("/advice")
         .then((res) => {
-            if (res) {
+            if (res && res.data !== {} && res.data.advice !== "") {
                 setAdvice(res.data);
             }
         })
