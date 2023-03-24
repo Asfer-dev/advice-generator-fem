@@ -10,13 +10,15 @@ function AdviceBox() {
         advice: "It is easy to sit up and take notice, what's difficult is getting up and taking action."
     }
     
-    const [advice, setAdvice] = React.useState(data);
+    const [advice, setAdvice] = React.useState({});
+
+    const url = 'https://api.adviceslip.com/advice';
 
     React.useEffect(() => {
-        axios.get("/advice")
+        axios.get(url)
         .then((res) => {
             if (typeof(res.data) === 'object') {
-                setAdvice(res.data);
+                setAdvice(res.data.slip);
             } else {
                 setAdvice(data);
             }
@@ -34,10 +36,10 @@ function AdviceBox() {
             <p className="advice-text">"{advice.advice}"</p>
             <img className="pattern-divider" src={logoDividerDesk} />
             <button className="btn-dice" onClick={() => {
-                axios.get("/advice")
+                axios.get(url)
                 .then((res) => {
                     if (typeof(res.data) === 'object') {
-                        setAdvice(res.data);
+                        setAdvice(res.data.slip);
                     } else {
                         setAdvice(data);
                     }
