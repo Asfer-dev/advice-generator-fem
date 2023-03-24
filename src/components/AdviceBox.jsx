@@ -15,7 +15,9 @@ function AdviceBox() {
     React.useEffect(() => {
         axios.get("/advice")
         .then((res) => {
-            setAdvice(res.data);
+            if (res) {
+                setAdvice(res.data);
+            }
         })
         .catch(err => {
             setAdvice(data);
@@ -32,7 +34,9 @@ function AdviceBox() {
             <button className="btn-dice" onClick={() => {
                 axios.get("/advice")
                     .then((res) => {
-                        setAdvice(res.data);
+                        if (res) {
+                            setAdvice(res.data);
+                        }
                     })
                     .catch(err => {
                         setAdvice(data);
