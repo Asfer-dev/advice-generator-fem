@@ -7,10 +7,19 @@ function AdviceBox() {
 
     const [advice, setAdvice] = React.useState({});
 
+    const data = {
+        id: "117",
+        advice: "It is easy to sit up and take notice, what's difficult is getting up and taking action."
+    }
+
     React.useEffect(() => {
         axios.get("/advice")
         .then((res) => {
             setAdvice(res.data);
+        })
+        .catch(err => {
+            setAdvice(data);
+            console.log(err);
         });
     }, []);
 
@@ -24,6 +33,10 @@ function AdviceBox() {
                 axios.get("/advice")
                     .then((res) => {
                         setAdvice(res.data);
+                    })
+                    .catch(err => {
+                        setAdvice(data);
+                        console.log(err);
                     });
             }}>
                 <img src={iconDice} />
