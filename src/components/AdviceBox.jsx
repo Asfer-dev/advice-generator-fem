@@ -15,7 +15,11 @@ function AdviceBox() {
     React.useEffect(() => {
         axios.get("/advice")
         .then((res) => {
-            setAdvice(data);
+            if (typeof(res.data) === 'object') {
+                setAdvice(res.data);
+            } else {
+                setAdvice(data);
+            }
         })
         .catch(err => {
             setAdvice(data);
@@ -31,16 +35,17 @@ function AdviceBox() {
             <img className="pattern-divider" src={logoDividerDesk} />
             <button className="btn-dice" onClick={() => {
                 axios.get("/advice")
-                    .then((res) => {
-                        if (res) {
-                            setAdvice(res.data);
-                            console.log(res.data);
-                        }
-                    })
-                    .catch(err => {
+                .then((res) => {
+                    if (typeof(res.data) === 'object') {
+                        setAdvice(res.data);
+                    } else {
                         setAdvice(data);
-                        console.log(err);
-                    });
+                    }
+                })
+                .catch(err => {
+                    setAdvice(data);
+                    console.log(err);
+                });
             }}>
                 <img src={iconDice} />
             </button>
