@@ -54,9 +54,9 @@ body {
 
 .advice-box {
     position: relative;
-    max-width: 550px;
+    max-width: min(550px, 100vw - 10%);
     background-color: var(--clr-neutral-medium);
-    padding: 3rem;
+    padding: min(3rem, 5%);
     border-radius: 0.875rem;
     display: flex;
     flex-direction: column;
@@ -71,7 +71,8 @@ body {
 }
 
 .pattern-divider {
-    margin: 1rem 0;
+    margin: 1rem 0 2rem;
+    width: 100%;
 }
 
 .advice-heading {
