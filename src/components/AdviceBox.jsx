@@ -34,6 +34,7 @@ function AdviceBox() {
                     .then((res) => {
                         if (res) {
                             setAdvice(res.data);
+                            console.log(res.data);
                         }
                     })
                     .catch(err => {
